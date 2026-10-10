@@ -3,338 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>법의모든영역 법모영</title>
+    <title>MYNG CORPORATION :: 교육자료실</title>
+    <meta name="description" content="일상 속 배움과 따뜻한 코칭을 위한 MYNG 교육자료실">
+    <link rel="preconnect" href="https://images.unsplash.com">
 
-    <style>
-        :root {
-            /* 스타벅스 특유의 톤앤매너 완벽 재현 */
-            --bg-color: #f6f5f0;           /* 바닥 배경 */
-            --card-bg: #f2ebd9;           /* 카드 배경 (조금 더 명확한 베이지) */
-            --card-border: rgba(0, 0, 0, 0.04);
-            --text-main: #222222;
-            --text-sub: #666666;
-            --event-tag: #8c5a2b;          /* 이벤트 브라운 컬러 */
-            --sb-green: #00704a;
-            --badge-green: #00704a;
-            --border-color: #e5e3dc;
-            
-            /* 명암 및 윤곽을 결정짓는 핵심 그림자 */
-            --shadow-card: 0 8px 20px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04);
-            --shadow-badge: 0 4px 10px rgba(0, 0, 0, 0.2);
-            --shadow-img: 0 4px 12px rgba(0, 0, 0, 0.08);
-
-            --radius-lg: 20px;
-            --radius-sm: 14px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            min-height: 100vh;
-            padding-bottom: 95px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 430px;
-            margin: 0 auto;
-            padding: 0 18px;
-        }
-
-        /* 1. 상단 앱 헤더 */
-        .app-header {
-            position: sticky;
-            top: 0;
-            background-color: var(--bg-color);
-            z-index: 100;
-            padding: 24px 4px 16px;
-        }
-
-        .brand-title {
-            font-size: 22px;
-            font-weight: 800;
-            color: var(--text-main);
-            letter-spacing: -0.6px;
-        }
-
-        /* 섹션 타이틀 */
-        .section-header {
-            margin: 20px 0 14px 4px;
-        }
-
-        .section-title {
-            font-size: 19px;
-            font-weight: 800;
-            color: var(--text-main);
-            letter-spacing: -0.5px;
-        }
-
-        .section-subtitle {
-            font-size: 13px;
-            color: var(--text-sub);
-            margin-top: 4px;
-            font-weight: 500;
-        }
-
-        /* 2. 카드 리스트 - 입체감 핵심 설정 */
-        .card-list {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .link-card {
-            background-color: var(--card-bg);
-            border-radius: var(--radius-lg);
-            padding: 22px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            text-decoration: none;
-            color: inherit;
-            position: relative;
-            
-            /* 명암과 윤곽을 선명하게 잡아주는 요소 */
-            box-shadow: var(--shadow-card);
-            border: 1px solid var(--card-border);
-            transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.2s ease;
-        }
-
-        .link-card:active {
-            transform: scale(0.97);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
-        }
-
-        .card-content {
-            flex: 1;
-            padding-right: 14px;
-        }
-
-        .card-event-tag {
-            font-size: 11px;
-            font-weight: 800;
-            color: var(--event-tag);
-            letter-spacing: 0.6px;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        .card-title {
-            font-size: 16px;
-            font-weight: 800;
-            color: var(--text-main);
-            line-height: 1.4;
-            word-break: keep-all;
-            letter-spacing: -0.3px;
-        }
-
-        .card-title strong {
-            color: var(--event-tag);
-            font-weight: 800;
-        }
-
-        .card-date {
-            font-size: 11px;
-            color: #9e9382;
-            margin-top: 10px;
-            font-weight: 500;
-        }
-
-        /* 3. 오른쪽 이미지 & 3D 입체 뱃지 */
-        .card-img-wrap {
-            position: relative;
-            width: 105px;
-            height: 105px;
-            flex-shrink: 0;
-        }
-
-        .card-img {
-            width: 100%;
-            height: 100%;
-            border-radius: var(--radius-sm);
-            object-fit: cover;
-            background-color: #e2dbce;
-            box-shadow: var(--shadow-img);
-        }
-
-        /* 스타벅스 특유의 둥근 입체 뱃지 */
-        .img-badge {
-            position: absolute;
-            bottom: -6px;
-            right: -6px;
-            background-color: var(--badge-green);
-            color: #ffffff;
-            font-size: 10px;
-            font-weight: 700;
-            padding: 8px 12px;
-            border-radius: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--shadow-badge);
-            line-height: 1;
-            white-space: nowrap;
-            border: 2px solid #ffffff; /* 하얀 테두리로 명암 분리 */
-        }
-
-        /* 4. 하단 네비게이션 바 세련미 개선 */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 0 max(12px, env(safe-area-inset-bottom));
-            z-index: 200;
-            max-width: 430px;
-            margin: 0 auto;
-            box-shadow: 0 -4px 16px rgba(0,0,0,0.03);
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            text-decoration: none;
-            color: #8e8e93;
-            font-size: 10px;
-            font-weight: 600;
-            width: 20%;
-        }
-
-        .nav-item.active {
-            color: var(--sb-green);
-            font-weight: 700;
-        }
-
-        .nav-icon-svg {
-            width: 22px;
-            height: 22px;
-            fill: currentColor;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 11px;
-            color: #a09d96;
-            font-weight: 500;
-        }
-    </style>
+    <!-- Open Graph (카톡/SNS 공유용 메타태그) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="MYNG CORPORATION :: 교육자료실">
+    <meta property="og:description" content="일상 속 배움 • 따뜻한 코칭의 시작 • 성장을 위한 따뜻한 동행">
+    <meta property="og:url" content="https://blog.naver.com/9812014sun">
+    <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
 
 <div class="container">
 
-    <!-- 상단 브랜드명 -->
-    <header class="app-header">
-        <h1 class="brand-title">법의모든영역 법모영</h1>
+    <!-- 상단 리틀리 액션 바 -->
+    <nav class="top-nav">
+        <button class="icon-btn" data-open-modal="shareModal" aria-label="공유하기">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        </button>
+        <button class="icon-btn" data-open-modal="subscribeModal" aria-label="구독하기">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </button>
+    </nav>
+
+    <!-- 프로필 영역 (신규 MYNG 투명 로고 2번 적용) -->
+    <header class="profile-header">
+        <div class="avatar-box" title="MYNG 로고">
+            <img class="profile-logo-img" src="assets/logo.webp" alt="MYNG 로고">
+        </div>
+        <p class="profile-desc">
+            일상 속 배움 • 따뜻한 코칭의 시작 • 성장을 위한 따뜻한 동행
+        </p>
+        <span class="profile-tag">GLOBAL VISION, LOCAL PRECISION</span>
     </header>
 
+    <!-- 6개 링크 리스트 -->
     <main class="card-list">
 
-        <!-- 카드 1 (네이버 블로그) -->
+        <!-- 링크 1: 교육학문 블로그 -->
         <a href="https://blog.naver.com/9812014sun" target="_blank" rel="noopener noreferrer" class="link-card">
             <div class="card-content">
-                <span class="card-event-tag">BLOG</span>
-                <div class="card-title">
-                    법의모든영역 공식 블로그<br>
-                    <strong>수업 자료 및 소식 보기</strong>
-                </div>
-                <div class="card-date">blog.naver.com/9812014sun</div>
+                <span class="card-tag">OFFICIAL BLOG</span>
+                <div class="card-title">교육학문 블로그</div>
+                <div class="card-subtext">최신 교육정보 · 학습법 · 공부자료</div>
             </div>
             <div class="card-img-wrap">
-                <img class="card-img" src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=300&q=80" alt="공식 블로그">
+                <img class="card-img" src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=300&q=80" alt="교육학문 블로그" loading="lazy" decoding="async">
+                <div class="img-badge">바로가기</div>
             </div>
         </a>
 
-        <!-- 섹션 헤더 -->
-        <div class="section-header">
-            <h2 class="section-title">안내 및 주요 소식</h2>
-            <p class="section-subtitle">법모영에서 전해드리는 유용한 정보입니다</p>
-        </div>
-
-        <!-- 카드 2 -->
-        <a href="https://blog.naver.com/9812014sun" target="_blank" rel="noopener noreferrer" class="link-card">
+        <!-- 링크 2: 무료 교육자료 다운로드 -->
+        <a href="https://blog.naver.com/9812014sun" target="_blank" rel="noopener noreferrer" class="link-card highlight">
             <div class="card-content">
-                <span class="card-event-tag">NOTICE</span>
-                <div class="card-title">
-                    법모영 교육과정 및<br>
-                    <strong>수업 스케줄 안내</strong>
-                </div>
+                <span class="card-tag">FREE RESOURCE</span>
+                <div class="card-title">무료 교육자료 다운로드</div>
+                <div class="card-subtext">바로 사용할 수 있는 필수 학습자료 모음</div>
             </div>
             <div class="card-img-wrap">
-                <img class="card-img" src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=300&q=80" alt="교육 안내">
-                <div class="img-badge">
-                    안내 보기
-                </div>
+                <img class="card-img" src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=300&q=80" alt="무료 교육자료" loading="lazy" decoding="async">
+                <div class="img-badge">무료 받기</div>
             </div>
         </a>
 
-        <!-- 카드 3 -->
+        <!-- 링크 3: 인기 교육자료 BEST -->
         <a href="https://blog.naver.com/9812014sun" target="_blank" rel="noopener noreferrer" class="link-card">
             <div class="card-content">
-                <span class="card-event-tag">EVENT</span>
-                <div class="card-title">
-                    1:1 학습 상담 및<br>
-                    <strong>수강 문의 바로가기</strong>
-                </div>
+                <span class="card-tag">POPULAR BEST</span>
+                <div class="card-title">인기 교육자료 BEST</div>
+                <div class="card-subtext">가장 많이 찾는 검증된 자료부터 보기</div>
             </div>
             <div class="card-img-wrap">
-                <img class="card-img" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=300&q=80" alt="상담 문의">
-                <div class="img-badge">
-                    상담 문의
-                </div>
+                <img class="card-img" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=300&q=80" alt="인기 교육자료" loading="lazy" decoding="async">
+                <div class="img-badge">인기자료</div>
             </div>
         </a>
+
+        <!-- 링크 4: 학습 가이드 -->
+        <a href="https://blog.naver.com/9812014sun" target="_blank" rel="noopener noreferrer" class="link-card">
+            <div class="card-content">
+                <span class="card-tag">STUDY GUIDE</span>
+                <div class="card-title">학습 가이드</div>
+                <div class="card-subtext">학년·목적별 맞춤 추천 자료 및 솔루션</div>
+            </div>
+            <div class="card-img-wrap">
+                <img class="card-img" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=300&q=80" alt="학습 가이드" loading="lazy" decoding="async">
+                <div class="img-badge">가이드 보기</div>
+            </div>
+        </a>
+
+        <!-- 링크 5: 학습 필수 아이템 -->
+        <a href="https://blog.naver.com/9812014sun" target="_blank" rel="noopener noreferrer" class="link-card">
+            <div class="card-content">
+                <span class="card-tag">RECOMMENDED ITEMS</span>
+                <div class="card-title">학습 필수 아이템</div>
+                <div class="card-subtext">공부에 도움 되는 추천 도서·문구·학습도구</div>
+            </div>
+            <div class="card-img-wrap">
+                <img class="card-img" src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?auto=format&fit=crop&w=300&q=80" alt="학습 필수 아이템" loading="lazy" decoding="async">
+                <div class="img-badge">아이템 보기</div>
+            </div>
+        </a>
+
+        <!-- 링크 6: 새 자료 알림받기 -->
+        <button type="button" class="link-card newsletter-card" data-open-modal="subscribeModal" aria-controls="subscribeModal">
+            <div class="card-content">
+                <span class="card-tag">NEWSLETTER</span>
+                <div class="card-title">새 자료 알림받기</div>
+                <div class="card-subtext">새로운 교육자료 업데이트 소식을 이메일로 받기</div>
+            </div>
+            <div class="card-img-wrap">
+                <img class="card-img" src="https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?auto=format&fit=crop&w=300&q=80" alt="새 자료 알림받기" loading="lazy" decoding="async">
+                <div class="img-badge">알림 신청</div>
+            </div>
+        </button>
 
     </main>
 
     <footer>
-        © 법의모든영역 법모영. All rights reserved.
+        © BMYNG CORPORATION. All rights reserved.
     </footer>
 
 </div>
 
-<!-- 하단 고정 네비게이션 (SVG 모던 아이콘으로 교체) -->
-<nav class="bottom-nav">
-    <a href="#" class="nav-item active">
-        <svg class="nav-icon-svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-        <span>Home</span>
-    </a>
-    <a href="#" class="nav-item">
-        <svg class="nav-icon-svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-        <span>Info</span>
-    </a>
-    <a href="#" class="nav-item">
-        <svg class="nav-icon-svg" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
-        <span>Consult</span>
-    </a>
-    <a href="#" class="nav-item">
-        <svg class="nav-icon-svg" viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
-        <span>Class</span>
-    </a>
-    <a href="#" class="nav-item">
-        <svg class="nav-icon-svg" viewBox="0 0 24 24"><path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
-        <span>Other</span>
-    </a>
-</nav>
+<!-- 1. 이메일 구독 모달 -->
+<div class="modal-overlay" id="subscribeModal" role="dialog" aria-modal="true" aria-labelledby="subscribeTitle" hidden data-overlay-close="subscribeModal">
+    <div class="bottom-sheet" tabindex="-1">
+        <button class="close-btn" data-close-modal="subscribeModal">✕</button>
+        <div class="sheet-avatar">
+            <img src="assets/logo.webp" alt="MYNG 로고">
+        </div>
+        <div class="sheet-title" id="subscribeTitle">새 자료 알림받기</div>
+        <div class="sheet-subtitle">신규 교육자료와 핵심 공부법 업데이트 소식을 전해드립니다.</div>
+        
+        <form id="subscribeForm" novalidate>
+            <div class="input-group">
+                <label for="email" class="sr-only">이메일 주소</label>
+                <input type="email" id="email" name="email" class="email-input"
+                       placeholder="이메일 주소를 입력해주세요*" autocomplete="email" required
+                       aria-required="true">
+            </div>
+            <button type="submit" class="submit-btn">무료로 소식 받기</button>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="agree" name="agree" required aria-required="true">
+                <label for="agree">[필수] 개인정보 수집 및 이용 동의</label>
+            </div>
+            <p id="subscribeStatus" class="form-status" role="status" aria-live="polite"></p>
+        </form>
+    </div>
+</div>
+
+<!-- 2. 공유 및 QR 모달 -->
+<div class="modal-overlay" id="shareModal" role="dialog" aria-modal="true" aria-labelledby="shareTitle" hidden data-overlay-close="shareModal">
+    <div class="bottom-sheet" tabindex="-1">
+        <button class="close-btn" data-close-modal="shareModal">✕</button>
+        <div class="sheet-avatar">
+            <img src="assets/logo.webp" alt="MYNG 로고">
+        </div>
+        <div class="sheet-title" id="shareTitle">blog.naver.com/9812014sun</div>
+        <div class="sheet-subtitle">QR 코드를 스캔하거나 링크를 공유하세요.</div>
+        
+        <div class="qr-card-box">
+            <img class="qr-img" src="assets/qr.png" loading="lazy" decoding="async" alt="QR Code">
+            <div class="btn-flex">
+                <button class="action-sub-btn" data-action="copy">🔗 주소 복사</button>
+                <button class="action-sub-btn" data-action="share">📤 공유하기</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openModal(id) {
+        document.getElementById(id).classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(id) {
+        document.getElementById(id).classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function closeModalOnOverlay(event, id) {
+        if (event.target.classList.contains('modal-overlay')) {
+            closeModal(id);
+        }
+    }
+
+    function handleSubscribe() {
+        const emailInput = document.querySelector('.email-input');
+        const email = emailInput.value.trim();
+        const agree = document.getElementById('agree').checked;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!email) {
+            alert('이메일 주소를 입력해주세요.');
+            emailInput.focus();
+            return;
+        }
+        if (!emailRegex.test(email)) {
+            alert('올바른 이메일 형식이 아닙니다.');
+            emailInput.focus();
+            return;
+        }
+        if (!agree) {
+            alert('개인정보 수집 및 이용에 동의해주세요.');
+            return;
+        }
+
+        alert('구독 신청이 성공적으로 완료되었습니다!');
+        emailInput.value = '';
+        closeModal('subscribeModal');
+    }
+
+    function copyUrl() {
+        navigator.clipboard.writeText("https://blog.naver.com/9812014sun");
+        alert("링크 주소가 복사되었습니다!");
+    }
+
+    function shareUrl() {
+        if (navigator.share) {
+            navigator.share({
+                title: 'MYNG CORPORATION :: 교육자료실',
+                url: 'https://blog.naver.com/9812014sun'
+            });
+        } else {
+            copyUrl();
+        }
+    }
+</script>
+
+    <script src="assets/site.js" defer></script>
 
 </body>
 </html>
